@@ -1,0 +1,45 @@
+#This script illustrates the use of functions and scope
+#local scope - applied to identifer that is defined/declared INSIDE a function or block
+#global scope - applied to identifer that is defined/declared OUTSIDE a function or block
+
+import math
+x = 15 #this is a  global variable. Scope rules state that can be accessed in  
+             #any function that doesn't already have a variable with the same name
+
+def vofun():
+    x = 8 #This x is local to vofun. Scope rules state that it can only be used in here 
+    print(f'In vofun: the value of x is {x}')
+
+#define a main function in the same way:
+def main():
+    print('This statement is in the main function.')
+    vofun()
+    x = 5 #This x is local to main
+    print(f'In main: the value of x is {x}')
+    vofun2()
+
+    #prompt for two values (using the same names is good for keeping
+    #track of values as they move from one function to another
+    sidea, sideb = input('Enter sides a and b for a right triangle: ').split()
+
+    #convert to int or float
+    sidea = int(sidea)
+    sideb = int(sideb)
+
+    #test pythag
+    print(f'The hypotenuse is {pythag(sidea, sideb)} ')
+
+#notice here that you can place definitions after your 'main' function when 
+#it is defined like other functions! Move the functions around to confirm
+
+def vofun2():
+    print(f'In vofun2: the value of x is {x}')
+
+#you can insert global variables here but they can be easy to miss 
+
+def pythag(sidea, sideb): #sidea and sideb are local to pythag
+    hyp = math.sqrt(math.pow(sidea, 2) + math.pow(sideb, 2)) #hyp is also local
+    return hyp
+
+#------no function definitions below this line--------------
+main() #call main
